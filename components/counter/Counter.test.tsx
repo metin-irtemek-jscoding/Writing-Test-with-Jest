@@ -4,7 +4,7 @@ import user from "@testing-library/user-event";
 import { Counter } from "./Counter";
 
 describe("Counter Tests", () => {
-  test("renders correctly", () => {
+  test("the component should be render", () => {
     render(<Counter />);
     const countElement = screen.getByTestId("result");
     expect(countElement).toBeInTheDocument();
@@ -16,13 +16,13 @@ describe("Counter Tests", () => {
     expect(setButton).toBeInTheDocument();
   });
 
-  test("renders a count of 0", () => {
+  test("the result should be 0", () => {
     render(<Counter />);
     const countElement = screen.getByTestId("result");
     expect(countElement).toHaveTextContent("0");
   });
 
-  test("renders a count of 1 after clicking the increment button", async () => {
+  test("the result should be 1 after clicking the Increment button", async () => {
     user.setup();
     render(<Counter />);
     const incrementButton = screen.getByRole("button", { name: "Increment" });
@@ -31,7 +31,7 @@ describe("Counter Tests", () => {
     expect(countElement).toHaveTextContent("1");
   });
 
-  test("renders a count of 3 after clicking the increment button", async () => {
+  test("the result should be 3 after clicking the Increment button 3 times", async () => {
     user.setup();
     render(<Counter />);
     const incrementButton = screen.getByRole("button", { name: "Increment" });
@@ -42,15 +42,15 @@ describe("Counter Tests", () => {
     expect(countElement).toHaveTextContent("3");
   });
 
-  test("rendres a count of 10 after clicking the set button", async () => {
+  test("the result should be 5 after clicking the Set Initial Value button", async () => {
     user.setup();
     render(<Counter />);
     const firstValueInput = screen.getByRole("spinbutton");
-    await user.type(firstValueInput, "10");
-    expect(firstValueInput).toHaveValue(10);
+    await user.type(firstValueInput, "5");
+    expect(firstValueInput).toHaveValue(5);
     const setButton = screen.getByRole("button", { name: "Set First Value" });
     await user.click(setButton);
     const countElement = screen.getByTestId("result");
-    expect(countElement).toHaveTextContent("10");
+    expect(countElement).toHaveTextContent("5");
   });
 });
